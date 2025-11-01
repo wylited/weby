@@ -1,0 +1,192 @@
+/*  adapated from https://exp.krj.st/typst.test/main.css   */
+
+/* GENERAL */
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+form,
+label,
+ul,
+ol,
+dl,
+address {
+    margin-bottom: 0.9rem;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.45;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    word-break: break-word;
+}
+
+main {
+    display: block;
+}
+
+a {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    transition: color .3s;
+    color: #4cbf99;
+}
+
+a:hover {
+    color: #F07171;
+}
+
+html {
+    font-size: 18px;
+    height: 100%;
+    font-family: "Libertinus Serif", alegreya, palatino, serif;
+}
+
+@media screen and (min-width: 800px) {
+    html {
+        font-size: 19px;
+    }
+}
+
+::selection {
+    background-color: #a37acc;
+}
+
+body {
+    background-color: #fcfcfc;
+    color: #5c6166;
+    font-size: 1rem;
+    margin: auto;
+    padding: 2.5rem 0 5rem 0;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+@media all and (max-width: 666px) {
+    body {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
+
+body > * {
+    max-width: 33rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+[type=checkbox] {
+    vertical-align: middle;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.25rem;
+    line-height: 1.2;
+    color: #444;
+    margin-top: 2rem;
+}
+
+h3 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #444;
+}
+
+p {
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+p em {
+    font-style: italic;
+}
+
+hr {
+    border: 1px solid #84878b;
+    text-align: center;
+}
+
+/* CUSTOM FORMATTING */
+span.right {
+    float: right;
+}
+
+div.center {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+/* MATH */
+sup {
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.45em;
+    left: 0.05em;
+}
+
+span.math {
+    display: inline-block;
+}
+
+figure.math {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+figure > svg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+span.math > svg,
+figure.math > svg {
+    width: auto;
+    /* idk why these two are necessary */
+    height: 0.75rem; /* match current line height */
+}
+
+/* override color */
+
+span.math svg use,
+figure.math svg use {
+  fill: #5c6166 !important;
+}
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300&display=swap');
+
+:root {
+    --font-serif: "Libertinus Serif", alegreya, palatino, serif;
+    --font-sans: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", "k.iosevka", "fira mono", monospace;
+    --font-extra: "Rasa";
+}
+
+/* Helper classes for specific font usage */
+.serif { font-family: var(--font-serif); }
+.sans-serif { font-family: var(--font-sans); }
+.mono { font-family: var(--font-mono); }
+.extra { font-family: var(--font-extra); }

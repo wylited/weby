@@ -1,0 +1,19 @@
+Note: this project is still extremely *experimental*
+
+* weby
+/Cause why not/
+
+An opinionated personal website written in typst.
+
+** Usage
+Compile with the latest version of typst for now.
+
+~typst compile index.typ --features html --format html~
+
+** Notes
+reminder to myself to look at [[https://github.com/typst/typst/issues/5512][the tracking issue]] for typst html export (and maybe even contribute if I can write good code).
+
+** Credits
+To [[https://github.com/sayatodev][@sayako]] for not letting me give up on this.
+To [[https://github.com/Krasjet][@Krasjet]] for showing what is possible.
+To [[github.com/laurmaedje][@laurmaedje]] for developing typst export to html
