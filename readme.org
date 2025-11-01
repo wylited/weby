@@ -15,5 +15,7 @@ reminder to myself to look at [[https://github.com/typst/typst/issues/5512][the 
 
 ** Credits
 To [[https://github.com/sayatodev][@sayako]] for not letting me give up on this.
+
 To [[https://github.com/Krasjet][@Krasjet]] for showing what is possible.
+
 To [[github.com/laurmaedje][@laurmaedje]] for developing typst export to html

@@ -14,7 +14,7 @@ Amateur #link("https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)")[
 
 Bachelors in Computer Engineering #right[#sym.at HKUST '28]
 
-Checkout more about me,
+Check out more about me,
 
 #center[
     Prose \
