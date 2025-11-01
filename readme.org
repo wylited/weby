@@ -18,4 +18,4 @@ To [[https://github.com/sayatodev][@sayako]] for not letting me give up on this.
 
 To [[https://github.com/Krasjet][@Krasjet]] for showing what is possible.
 
-To [[github.com/laurmaedje][@laurmaedje]] for developing typst export to html
+To [[https://github.com/laurmaedje][@laurmaedje] for developing typst export to html
