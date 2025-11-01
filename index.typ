@@ -4,6 +4,10 @@
 
 #show: format
 
+#set document(
+  title: [wypage]
+)
+
 #line(length: 100%)
 
 = Hey, I'm wylited
