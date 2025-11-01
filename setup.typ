@@ -50,7 +50,8 @@
 
     show: word-count
 
-    // TODO update these to #html.link()[] and #html.base()[]
+    // TODO update these to #html.link()[] and #html.base()[] and place them in head
+    html.elem("link", attrs: (rel: "icon", type: "image/x-icon", href: "favicon.ico"))
     html.elem("link", attrs: (rel: "stylesheet", href: "styles.css"))[]
     html.elem("base", attrs: (target: "_blank"))[]
     doc

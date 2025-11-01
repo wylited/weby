@@ -5,7 +5,7 @@
 #show: format
 
 #set document(
-  title: [wypage]
+    title: [wypage]
 )
 
 #line(length: 100%)
