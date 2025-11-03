@@ -2,7 +2,7 @@
 // adapted from https://github.com/typst/typst/issues/721#issuecomment-3064895139
 #import "@preview/wordometer:0.1.5": word-count
 
-#let format(doc) = {
+#let format(doc) = context {
     // inline math equation
     show math.equation.where(block: false): it => {
         if target() == "html" {

@@ -154,19 +154,19 @@ figure.math {
 
 figure > svg {
     display: block;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
 }
 
 span.math > svg,
 figure.math > svg {
-    width: auto;
     /* idk why these two are necessary */
-    height: 0.75rem; /* match current line height */
+    width: auto;
+    height: auto; /* match current line height */
 }
 
 /* override color */
-
 span.math svg use,
 figure.math svg use {
   fill: #5c6166 !important;
