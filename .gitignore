@@ -1,5 +1,8 @@
-*.html
-*.pdf
-**/*.html
-**/*.pdf
+# Build output directory
+dist/
 
+# PDFs and HTML are not tracked
+*.pdf
+**/*.pdf
+*.html
+**/*.html

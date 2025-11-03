@@ -1,5 +1,5 @@
 // index.typ
-#import "@preview/zap:0.4.0"
+#import "@preview/cetz:0.4.2": canvas, draw, tree
 #import "@preview/wordometer:0.1.5": total-words
 #import "setup.typ": format, center, right
 #show: format
@@ -18,10 +18,54 @@ If you've taken a look at the source for this website, linked in the bottom left
 
 == Why use Typst to generate a website?
 
-With the power of Typst, I can quite simply write equations like
+With the power of Typst, I can quite simply draw
+
+#figure(
+    canvas(length: 2cm, {
+        import draw: *
+        let phi = (1 + calc.sqrt(5)) / 2
+
+        ortho({
+            hide({
+                line(
+                    (-phi, -1, 0), (-phi, 1, 0), (phi, 1, 0), (phi, -1, 0), close: true, name: "xy",
+                )
+                line(
+                    (-1, 0, -phi), (1, 0, -phi), (1, 0, phi), (-1, 0, phi), close: true, name: "xz",
+                )
+                line(
+                    (0, -phi, -1), (0, -phi, 1), (0, phi, 1), (0, phi, -1), close: true, name: "yz",
+                )
+            })
+
+            intersections("a", "yz", "xy")
+            intersections("b", "xz", "yz")
+            intersections("c", "xy", "xz")
+
+            set-style(stroke: (thickness: 0.5pt, cap: "round", join: "round"))
+            line((0, 0, 0), "c.1", (phi, 1, 0), (phi, -1, 0), "c.3")
+            line("c.0", (-phi, 1, 0), "a.2")
+            line((0, 0, 0), "b.1", (1, 0, phi), (-1, 0, phi), "b.3")
+            line("b.0", (1, 0, -phi), "c.2")
+            line((0, 0, 0), "a.1", (0, phi, 1), (0, phi, -1), "a.3")
+            line("a.0", (0, -phi, 1), "b.2")
+
+            anchor("A", (0, phi, 1))
+            content("A", [$A$], anchor: "north", padding: .1)
+            anchor("B", (-1, 0, phi))
+            content("B", [$B$], anchor: "south", padding: .1)
+            anchor("C", (1, 0, phi))
+            content("C", [$C$], anchor: "south", padding: .1)
+            line("A", "B", stroke: (dash: "dashed"))
+            line("A", "C", stroke: (dash: "dashed"))
+        })
+    })
+)
+
+or communicate in the most beautiful language
 
 $ a_0 (x) (dif ^n y)/(dif x^n) + a_1 (x) (dif ^(n-1) y)/(dif x^(n-1)) + ...  + a_(n-1)(x)(dif y)/(dif x) + a_n (x)y = r(x) $
-$ a_0(x) $
+
 For those not in the know #link("https://typst.app")[Typst] is a modern alternative to #link("https://www.latex-project.org")[LaTeX]. These two are software primarily designed to prepare professional or academic documents
 
 Before the birth of this website, I mostly wrote prose with #link("https://orgmode.org/")[org-mode]. The files would be parsed using a rust program into HTML and then rendered on my website (refer to webx below).
@@ -63,5 +107,6 @@ I added a few gimmicks on top that I liked, for example a song player for #link(
 However, there were quite a few downsides to webx:
 1. The serverless functions would be compiled on the first call after a long time. Thus, if my website hadn't been visited in a while, it would take a few seconds to load all the pages again and be quite annoying.
 2. My website acted more or less like an #link("https://en.wikipedia.org/wiki/Single-page_application")[SPA] without history. This would cause issues for users when they tried to share links or navigate back pages.
+
 #sym.copyright 2025 #link("https://github.com/wylited/weby")[weby] #right[#total-words Words]
 #line(length: 100%)

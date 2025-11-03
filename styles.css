@@ -86,7 +86,7 @@ body {
 }
 
 body > * {
-    max-width: 33rem;
+    max-width: 44rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -97,7 +97,7 @@ body > * {
 
 h2 {
     text-align: center;
-    font-size: 2.25rem;
+    font-size: 3rem;
     line-height: 1.2;
     color: #444;
     margin-top: 2rem;
@@ -145,25 +145,22 @@ sup {
 
 span.math {
     display: inline-block;
+    zoom: 1.2;
 }
 
-figure.math {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+figure {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    zoom: 1.2;
 }
 
+span > svg,
 figure > svg {
+    width: auto !important;
+    height: auto !important;
     display: block;
-    width: auto;
     margin-left: auto;
     margin-right: auto;
-}
-
-span.math > svg,
-figure.math > svg {
-    /* idk why these two are necessary */
-    width: auto;
-    height: auto; /* match current line height */
 }
 
 /* override color */

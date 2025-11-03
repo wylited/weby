@@ -15,7 +15,8 @@
     // block math equation
     show math.equation.where(block: true): it => {
         if target() == "html" {
-            html.elem("figure", attrs: (class: "math"), html.frame(it))
+            html.elem("figure", attrs: (class: "math"),
+                html.frame(it))
         } else {
             it
         }
@@ -51,8 +52,8 @@
     show: word-count
 
     // TODO update these to #html.link()[] and #html.base()[] and place them in head
-    html.elem("link", attrs: (rel: "icon", type: "image/x-icon", href: "favicon.ico"))
-    html.elem("link", attrs: (rel: "stylesheet", href: "styles.css"))[]
+    html.elem("link", attrs: (rel: "icon", type: "image/x-icon", href: "/favicon.ico"))
+    html.elem("link", attrs: (rel: "stylesheet", href: "/styles.css"))[]
     html.elem("base", attrs: (target: "_blank"))[]
     doc
 }
