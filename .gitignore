@@ -6,3 +6,4 @@ dist/
 **/*.pdf
 *.html
 **/*.html
+.vercel
