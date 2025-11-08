@@ -1,4 +1,5 @@
 /*  adapated from https://exp.krj.st/typst.test/main.css   */
+/*  For optimal mobile viewing, ensure HTML includes: <meta name="viewport" content="width=device-width, initial-scale=1">  */
 
 /* GENERAL */
 * {
@@ -44,11 +45,11 @@ a {
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     transition: color .3s;
-    color: #4cbf99;
+    color: var(--link-colour);
 }
 
 a:hover {
-    color: #F07171;
+    color: var(--link-hover-color);
 }
 
 html {
@@ -64,12 +65,12 @@ html {
 }
 
 ::selection {
-    background-color: #a37acc;
+    background-color: var(--selection-color);
 }
 
 body {
-    background-color: #fcfcfc;
-    color: #5c6166;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-size: 1rem;
     margin: auto;
     padding: 2.5rem 0 5rem 0;
@@ -78,10 +79,42 @@ body {
     hyphens: auto;
 }
 
+/* Mobile responsive adjustments */
 @media all and (max-width: 666px) {
     body {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
+    }
+    
+    /* Constrain content width on mobile */
+    body > * {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+    
+    /* Ensure figures don't overflow */
+    figure {
+        margin: 1rem -0.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    /* Adjust headings for mobile */
+    h2 {
+        font-size: 2.2rem;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+    
+    h3 {
+        font-size: 1.6rem;
+    }
+    
+    /* Ensure all images and media scale properly */
+    img, 
+    video,
+    iframe {
+        max-width: 100%;
+        height: auto;
     }
 }
 
@@ -89,24 +122,78 @@ body > * {
     max-width: 44rem;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Ensure all content respects container width */
+.container {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Responsive adjustments for different screen sizes */
+@media screen and (max-width: 768px) {
+    body > * {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body > * {
+        padding: 0 0.5rem;
+    }
 }
 
 [type=checkbox] {
     vertical-align: middle;
 }
 
+/* /\* Custom styling for dark mode toggle checkbox *\/ */
+/* #dark { */
+/*     opacity: 0; */
+/*     position: absolute; */
+/*     width: 0; */
+/*     height: 0; */
+/* } */
+
+/* #dark + label { */
+/*     position: relative; */
+/*     display: inline-block; */
+/*     cursor: pointer; */
+/*     padding-left: 2.5rem; */
+/*     line-height: 1.4; */
+/* } */
+
+/* #dark + label::before { */
+/*     content: '☀'; /\* Sun emoji for light mode *\/ */
+/*     position: absolute; */
+/*     left: 0; */
+/*     top: 50%; */
+/*     transform: translateY(-50%); */
+/*     font-size: 1.2rem; */
+/*     line-height: 1; */
+/*     transition: content 0.3s ease; */
+/* } */
+
+/* #dark:checked + label::before { */
+/*     content: '🌙'; /\* Moon emoji for dark mode *\/ */
+/* } */
+
 h2 {
     text-align: center;
     font-size: 3rem;
     line-height: 1.2;
-    color: #444;
+    color: var(--heading-color);
     margin-top: 2rem;
 }
 
 h3 {
     font-size: 2rem;
     font-weight: 300;
-    color: #444;
+    color: var(--heading-color);
 }
 
 p {
@@ -119,7 +206,7 @@ p em {
 }
 
 hr {
-    border: 1px solid #84878b;
+    border: 1px solid var(--hr-color);
     text-align: center;
 }
 
@@ -149,9 +236,24 @@ span.math {
 }
 
 figure {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     zoom: 1.2;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Additional constraints for responsive figures */
+figure.typst {
+    max-width: 100vw;
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
+/* Ensure math figures are responsive */
+figure.math {
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 span > svg,
@@ -161,12 +263,39 @@ figure > svg {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    max-width: 100%;
+    height: auto;
 }
 
-/* override color */
-span.math svg use,
-figure.math svg use {
-  fill: #5c6166 !important;
+/* override color and ensure responsiveness */
+figure svg use {
+  fill: var(--text-color);
+}
+
+figure svg path {
+    stroke: var(--text-color);
+}
+/* Ensure all SVG elements scale properly */
+svg {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Specific responsive handling for math SVGs */
+span.math svg,
+figure.math svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Prevent overflow for any SVG containers */
+svg, 
+svg * {
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* FONTS */
@@ -180,6 +309,39 @@ figure.math svg use {
     --font-sans: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: "JetBrains Mono", "k.iosevka", "fira mono", monospace;
     --font-extra: "Rasa";
+    
+    /* Light mode colors (default) */
+    --bg-color: #fcfcfc;
+    --text-color: #5c6166;
+    --heading-color: #222;
+    --link-colour: #4cbf99;
+    --link-hover-color: #F07171;
+    --selection-color: rgba(255, 119, 51, 0.6);
+    --hr-color: #84878b;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0f0f17;
+        --text-color: #cbccc6;
+        --heading-color: #DDD;
+        --link-colour: #95E6CB;
+        --link-hover-color: #F07178;
+        --selection-color: rgba(255, 119, 51, 0.6);
+        --hr-color: #565a6e;
+    }
+}
+
+/* #html.elem("input", attrs:(id: "dark", type: "checkbox") */)
+body:has(#dark:checked) {
+    --bg-color: #0f0f17;
+    --text-color: #cbccc6;
+    --heading-color: #DDD;
+    --link-colour: #95E6CB;
+    --link-hover-color: #F07178;
+    --selection-color: rgba(255, 119, 51, 0.6);
+    --hr-color: #565a6e;
 }
 
 /* Helper classes for specific font usage */
