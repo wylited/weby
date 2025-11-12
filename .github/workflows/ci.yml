@@ -29,6 +29,13 @@ jobs:
     - name: Run build
       run: just build
 
+    - name: Upload dist as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: website-dist
+        path: dist/
+        retention-days: 30
+
     - name: Deploy to Vercel
       run: |
         # Install Vercel CLI
