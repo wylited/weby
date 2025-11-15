@@ -73,3 +73,14 @@
         [h(1fr) body]
     }
 }
+
+#let title() = context {
+    if target() == "html" {
+        html.elem("h1", attrs: (class: "right"), context document.title)
+    } else {
+        block({
+            set text(size: 1.7em, weight: "bold")
+            context document.title
+        })
+    }
+}
