@@ -99,8 +99,15 @@ body {
     }
     
     /* Adjust headings for mobile */
-    h2 {
+
+    h1 {
         font-size: 2.2rem;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+
+    h2 {
+        font-size: 2.0rem;
         margin-left: -0.5rem;
         margin-right: -0.5rem;
     }
@@ -181,10 +188,17 @@ body > * {
 /* #dark:checked + label::before { */
 /*     content: '🌙'; /\* Moon emoji for dark mode *\/ */
 /* } */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    line-height: 1.2;
+    color: var(--heading-color);
+    margin-top: 2rem;
+}
 
 h2 {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.8rem;
     line-height: 1.2;
     color: var(--heading-color);
     margin-top: 2rem;
@@ -268,13 +282,14 @@ figure > svg {
 }
 
 /* override color and ensure responsiveness */
-figure svg use {
+svg use {
   fill: var(--text-color);
 }
 
-figure svg path {
+svg path {
     stroke: var(--text-color);
 }
+
 /* Ensure all SVG elements scale properly */
 svg {
     max-width: 100%;
