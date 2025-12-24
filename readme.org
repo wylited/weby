@@ -5,8 +5,9 @@ Note: this project is still extremely *experimental*
 
 An opinionated personal website written in typst.
 
-** Usage
-Compile with the latest version of typst for now.
+** Compilation
+If not using the nix flake.
+Compile with typst version 0.13.1
 
 You can build the entire site using just:
 
@@ -14,6 +15,8 @@ You can build the entire site using just:
 
 This will compile all typst files in the ~src/~ directory and output the generated HTML to the ~dist/~ directory with proper directory structure.
 
+** Serving
+Optionally, you can directly serve with [[https://github.com/svenstaro/miniserve][miniserve]] 
 ** Notes
 reminder to myself to look at [[https://github.com/typst/typst/issues/5512][the tracking issue]] for typst html export (and maybe even contribute if I can write good code).
 

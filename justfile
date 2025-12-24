@@ -39,9 +39,3 @@ fix-refs:
 serve: build
     @echo "Serving website at http://localhost:8080"
     @cd dist && python3 -m http.server 8080
-
-# Install just if not available
-install-just:
-    @echo "Installing just..."
-    # This assumes a Linux system; adjust for other platforms as needed
-    curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
