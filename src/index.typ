@@ -12,10 +12,10 @@
 
 = Hey, I'm wylited
 
-That's a psuedonym, you probably don't know me. Notably I'm a...
-- Amateur #link("https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)")[CTF] player, for HKUST, team #link("ctftime.org/team/417655")[Icebird].
-- Local #link("https://rust-lang.org")[rust-lang] addict and a #link("https://github.com/doomemacs/doomemacs")[doom] #link("https://www.gnu.org/s/emacs/")[emacs] user
-- Studying a Bachelors in Computer Engineering #right[#sym.at HKUST '28]
+That's a psuedonym, you probably don't know me. Notably I'm...
+- An amateur #link("https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)")[CTF] player for HKUST team #link("ctftime.org/team/417655")[Icebird].
+- Your local #link("https://rust-lang.org")[rust-lang] addict and a #link("https://github.com/doomemacs/doomemacs")[doom] #link("https://www.gnu.org/s/emacs/")[emacs] user
+- Currently studying a Bachelors in Computer Engineering #right[#sym.at HKUST '28]
 
 Check out some other pages!
 
