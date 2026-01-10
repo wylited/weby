@@ -12,13 +12,13 @@
 
 = An Autology
 
-In my pursuit of generating websites in the manner that I like, I end up pushing myself into using unorthodoxing methods of generating a website.
+In my pursuit of generating websites explicitly in the manner I prefer , I end up using unorthodoxing methods of generating a website.
 
 If you've taken a look at the source for this website, linked in the bottom left corner, you might ask yourself
 
 == Why use Typst to generate a website?
 
-With the power of Typst, I can quite simply draw
+With the power of Typst, I can quite simply illustrate
 
 #figure(
     canvas(length: 2cm, {

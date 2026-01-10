@@ -16,7 +16,7 @@ You can build the entire site using just:
 This will compile all typst files in the ~src/~ directory and output the generated HTML to the ~dist/~ directory with proper directory structure.
 
 ** Serving
-Optionally, you can directly serve with [[https://github.com/svenstaro/miniserve][miniserve]] 
+Optionally, you can directly serve with python.
 ** Notes
 reminder to myself to look at [[https://github.com/typst/typst/issues/5512][the tracking issue]] for typst html export (and maybe even contribute if I can write good code).
 

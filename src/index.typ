@@ -12,25 +12,23 @@
 
 = Hey, I'm wylited
 
-That's a psuedonym, you probably don't know me...
+That's a psuedonym, you probably don't know me. Notably I'm a...
+- Amateur #link("https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)")[CTF] player, for HKUST, team #link("ctftime.org/team/417655")[Icebird].
+- Local #link("https://rust-lang.org")[rust-lang] addict and a #link("https://github.com/doomemacs/doomemacs")[doom] #link("https://www.gnu.org/s/emacs/")[emacs] user
+- Studying a Bachelors in Computer Engineering #right[#sym.at HKUST '28]
 
-Amateur #link("https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)")[CTF] player, local #link("https://rust-lang.org")[rust-lang] addict, and an #link("https://www.gnu.org/s/emacs/")[emacs] user who enjoys making things for people to use.
-
-Bachelors in Computer Engineering #right[#sym.at HKUST '28]
-
-Check out more about me,
+Check out some other pages!
 
 #center[
-    Prose \
-    Notes \
+    Writeups \
+    Blogs\
+//  Notes - my personal knowledge base \
     #link("meta.html")[Meta] \
     Resume \
-    #link("https://github.com/wylited")[Github] \
+    Illustrations \
 ]
 
-Currently Reading: Atlas Shrugged
-
-== Drawing of the week
+Currently Reading: The King in Yellow
 
 #figure(
     canvas({

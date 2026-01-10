@@ -1,0 +1,29 @@
+@import 'colors.css';
+@import 'fonts.css';
+@import 'typography.css';
+
+/* VIEW FORMATING */
+
+div.center {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+span.right {
+    float: right;
+}
+
+/* FIGURES FORMATTING */
+figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+figure svg {
+    width: 80% !important;
+    max-width: 100%;
+    height: auto !important;
+    display: block;
+}

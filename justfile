@@ -25,7 +25,7 @@ build:
         fi \
     done
     # Copy static assets
-    @cp styles.css favicon.ico dist/ 2>/dev/null || echo "No styles.css or favicon.ico to copy"
+    @cp static/*.css static/favicon.ico dist/ 2>/dev/null || echo "No css files or favicon.ico to copy"
     # Fix cross-references in HTML files
     @just fix-refs
 
@@ -37,5 +37,5 @@ fix-refs:
 
 # Serve the website locally for testing
 serve: build
-    @echo "Serving website at http://localhost:8080"
-    @cd dist && python3 -m http.server 8080
+    @echo "Serving website at http://localhost:3000"
+    @cd dist && python3 -m http.server 3000

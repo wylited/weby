@@ -1,0 +1,47 @@
+/* Light mode colors */
+:root {
+    --bg-color: #fcfcfc;
+    --text-color: #5c6166;
+    --heading-color: #222;
+    --link-colour: #4cbf99;
+    --link-hover-color: #F07171;
+    --selection-color: #FF773399;
+    --hr-color: #84878b;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0f0f17;
+        --text-color: #cbccc6;
+        --heading-color: #DDD;
+        --link-colour: #95E6CB;
+        --link-hover-color: #F07178;
+        --selection-color: #ff773399;
+        --hr-color: #565a6e;
+    }
+}
+
+::selection {
+    background-color: var(--selection-color);
+}
+
+a {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    transition: color .3s;
+    color: var(--link-colour);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+hr {
+    border: 1px solid var(--hr-color);
+}
