@@ -12,7 +12,7 @@
 
 = An Autology
 
-In my pursuit of generating websites explicitly in the manner I prefer , I end up using unorthodoxing methods of generating a website.
+In my pursuit of generating websites explicitly in the manner I prefer, I end up using rather unorthodox methods of generating a website.
 
 If you've taken a look at the source for this website, linked in the bottom left corner, you might ask yourself
 
@@ -78,7 +78,7 @@ With the release of #link("https://typst.app/blog/2025/typst-0.14/#richer-html-e
 
 == How exactly does this work?
 
-I wouldn't exactly like to answer this question until my workflow is more concrete, but at a base, we compile individual typst files into html and layer css.
+Although, I wouldn't exactly like to answer this question until my workflow is more concrete, but at a base, we compile individual typst files into html and layer css.
 
 Specific compilation tooling can be seen in #link("https://github.com/wylited/weby/blob/main/setup.typ")[setup.typ], for example math blocks are rendered as SVGs, for now...
 
