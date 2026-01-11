@@ -17,7 +17,7 @@ That's a psuedonym, you probably don't know me. Notably I'm...
 - Your local #link("https://rust-lang.org")[rust-lang] addict and a #link("https://github.com/doomemacs/doomemacs")[doom] #link("https://www.gnu.org/s/emacs/")[emacs] user
 - Currently studying a Bachelors in Computer Engineering #right[#sym.at HKUST '28]
 
-Check out some other pages!
+Check out some other pages! (more coming soon)
 
 #center[
     Writeups \
