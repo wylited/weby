@@ -24,7 +24,7 @@ Check out some other pages! (more coming soon)
     Blogs\
 //  Notes - my personal knowledge base \
     #link("meta.html")[Meta] \
-    Resume \
+    #link("resume.html")[Resume] \
     #link("illustrations.html")[Illustrations] \
 ]
 
