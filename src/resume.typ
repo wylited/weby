@@ -18,20 +18,20 @@
 
 == EXPERIENCE
 
-=== Backend Engineer #right[Sep 2025 - Present]
+=== Backend Engineer #right[Sep 2025 --- Present]
 USThing (All in One App)
 - Architected and maintained backend services for *14,000+ active student users*, handling high-concurrency traffic.
 - Engineered a *Real-Time Chat System* using *PostgreSQL* and *Fastify* over WebSockets, reducing message latency by 40% compared to polling methods.
 - Implemented production-grade observability pipelines using *Prometheus and Loki*, enabling proactive error detection and reducing downtime.
 - Managed backend task prioritization and CI/CD workflows, ensuring smooth deployment cycles for the mobile app team.
 
-=== Software Developer Intern #right[Oct 2023-Feb 2024]
-Rice Robotics #right[Sep 2025 - Present]
+=== Software Developer Intern #right[Oct 2023 --- Feb 2024]
+Rice Robotics
 - Optimized inter-process communication (IPC) protocols for autonomous robots, improving command execution speed.
 - Collaborated with hardware teams to debug complex electromechanical integration issues.
 
-=== Software Developer Intern
-M-Labs Limited #right[Apr 2022-Apr 2022]
+=== Software Developer Intern #right[Apr 2022 --- Apr 2022]
+M-Labs Limited
 - Developed compiler tooling in *Rust* to translate Python kernels into low-level instructions for quantum control systems.
 
 == KEY PROJECTS
@@ -47,11 +47,11 @@ M-Labs Limited #right[Apr 2022-Apr 2022]
 === *Second Place*, HKCERT CTF (Regional Cybersecurity Competition) #right[Jan 2025]
 - Ranked 2nd out of 167 teams; demonstrated expertise in reverse engineering and securing system vulnerabilities.
 
-=== *The Hong Kong University of Science and Technology* #right[Aug 2025-May 2028]
+=== *The Hong Kong University of Science and Technology* #right[Aug 2025 --- May 2028]
 Bachelors in Computer Engineering
 - Full Academic Scholarship Recipient.
 
-=== *King George V* #right[Aug 2018-May 2025]
+=== *King George V School* #right[Aug 2018 --- May 2025]
 International Baccalaureate
 - Obtained a 44/45, First percentile worldwide.
 - Studied Higher Level: Computer Science, Mathematics Analysis & Approaches, Physics, Economics.
