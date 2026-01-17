@@ -17,15 +17,17 @@ That's a psuedonym, you probably don't know me. Notably I'm...
 - Your local #link("https://rust-lang.org")[rust-lang] addict and a #link("https://github.com/doomemacs/doomemacs")[doom] #link("https://www.gnu.org/s/emacs/")[emacs] user
 - Currently studying a Bachelors in Computer Engineering #right[#sym.at HKUST '28]
 
+A warning that this page is compiled with typst, and is highly experimental, so bear with me.
+
 Check out some other pages! (more coming soon)
 
 #center[
-    Writeups \
-    Blogs\
+    #link("/writeups.html")[Writeups] \
+    #link("/prose.html")[Prose]\
 //  Notes - my personal knowledge base \
-    #link("meta.html")[Meta] \
-    #link("resume.html")[Resume] \
-    #link("illustrations.html")[Illustrations] \
+    #link("/meta.html")[Meta] \
+    #link("/resume.html")[Resume] \
+    #link("/illustrations.html")[Illustrations] \
 ]
 
 Currently Reading: The King in Yellow
