@@ -16,6 +16,6 @@ My postmortem writeups for CTF challenges and (soon) other academic investigatio
 
 == Cryptography
 
-- #link("/fractional_rsa.html")[Fractional RSA], a Week 8 COMP2633 Homework.
+- #link("/fractional-rsa.html")[Fractional RSA], a Week 8 COMP2633 Homework.
 
 More coming soon, Stay tuned!
