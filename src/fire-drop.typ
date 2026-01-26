@@ -169,6 +169,10 @@ uhmm... I really don't know either.
 
 After slaving away at this challenge, somehow Sayako managed to find the flag. I really don't know how.
 
+He tells me that he uses base 4096, (cue flashbacks to super encryption homework).
+
+Why just why, anyways we can use base 4096 to decode the actual flag.
+
 This is why we have 30 submissions.
 
 `firebird{for3nm1Sc_m0M3n7}`
