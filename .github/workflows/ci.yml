@@ -23,8 +23,6 @@ jobs:
 
     - name: Install Typst
       uses: typst-community/setup-typst@v4
-      with:
-        typst-version: 0.13.1
 
     - name: Run build
       run: just build

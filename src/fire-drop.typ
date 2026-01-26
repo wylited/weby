@@ -84,11 +84,11 @@ rocky::DESKTOP-BS82713:3baa66840bdaa49b:7a21d053aca5c68cf97e842f44e8e838:0101000
 
 Now we need to crack this hash. I, being a complete idiot, tried every password bruteforce list in existence apart from rockyou.txt.
 
-I dont even know how I managed to miss the fact that his guys username is rocky.
+I don't even know how I managed to miss the fact that this guy's username is rocky.
 
 So using a wordlist attack, specifically rockyou.txt, we recover the password used as xian.nibai!
 
-This allows us the recover the transferred file over SMB, specifically we can find the transferred flag.zip file.
+This allows us to recover the transferred file over SMB, specifically we can find the transferred flag.zip file.
 ```
 tshark -r 2.pcapng -o ntlmssp.nt_password:xian.nibai -Y "smb2" -T fields -e frame.number -e _ws.col.Info | rg "flag.zip"
 
@@ -130,13 +130,13 @@ So I thought maybe I had made a mistake, and the JPEGs were different. My though
 
 Obviously, I had no hope fixing the based.jpeg, So I did what any rational person would do and tried to brute force the last byte.
 
-My assumption was, the flag.txt should start with `firebird{`, which is 10 bytes, and we need 12 bytes of known plain text for zipcrypto to work, this would allow me to brute force two bytes and get a proper decryption working.
+My assumption was, the flag.txt should start with `firebird{`, which is 10 bytes, and we need 12 bytes of known plain text for zipcrypto to work. This would allow me to brute force two bytes and get a proper decryption working.
 
 Can you tell how I have no idea how encryption works?
 
 Anyways, I was also inducing hallucination on my dear teammate Sayako, by trying to make him find some pattern.
 
-we imagined, suppose for the start
+We imagined, suppose for the start
 
 ```
 6606
@@ -177,5 +177,5 @@ Please never write a challenge like this again.
 
 At least give us the right flag in flag.txt or through some actual steganography...
 
-This is like super-encryption all over again. (P.S I never managed to solve it and I was depressed for so long).
+This is like super-encryption all over again. (P.S. I never managed to solve it and I was depressed for so long).
 
