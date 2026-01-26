@@ -25,7 +25,7 @@ build:
         fi \
     done
     # Copy static assets
-    @cp static/*.css static/favicon.ico dist/ 2>/dev/null || echo "No css files or favicon.ico to copy"
+    @cp static/*  dist/ 2>/dev/null || echo "No css files or favicon.ico to copy"
     # Fix cross-references in HTML files
     @just fix-refs
 
