@@ -44,7 +44,10 @@ M-Labs Limited
 - Frontend built with *Next.js* featuring graph visualization and split-view editing.
 
 == AWARDS & EDUCATION
-=== *Second Place*, HKCERT CTF (Regional Cybersecurity Competition) #right[Jan 2025]
+=== *Second Place*, HKCERT CTF (Tertiary Institutions) #right[Jan 2026]
+- Ranked 2nd out of 167 teams; demonstrated expertise in reverse engineering and securing system vulnerabilities.
+
+=== *Second Place*, HKCERT CTF (Secondary Schools) #right[Jan 2025]
 - Ranked 2nd out of 167 teams; demonstrated expertise in reverse engineering and securing system vulnerabilities.
 
 === *The Hong Kong University of Science and Technology* #right[Aug 2025 --- May 2028]
@@ -53,8 +56,8 @@ Bachelors in Computer Engineering
 
 === *King George V School* #right[Aug 2018 --- May 2025]
 International Baccalaureate
-- Obtained a 44/45, First percentile worldwide.
+- Obtained a 44/45, 99th percentile worldwide.
 - Studied Higher Level: Computer Science, Mathematics Analysis & Approaches, Physics, Economics.
 
-#sym.copyright 2025 #link("https://github.com/wylited/weby")[weby]
+#sym.copyright 2026 #link("https://github.com/wylited/weby")[weby]
 #line(length: 100%)
