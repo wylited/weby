@@ -1,0 +1,183 @@
+/* ============= HIGHLIGHT.JS — AYU THEME ============= */
+
+/* LIGHT MODE (default) */
+@media (prefers-color-scheme: light) {
+  pre code.hljs {
+    background: #fafafa;
+    color: #6c7680;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #abb0b6;
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-addition {
+    color: #fa8d3e;
+  }
+
+  .hljs-number,
+  .hljs-constant {
+    color: #a37acc;
+  }
+
+  .hljs-string,
+  .hljs-doctag,
+  .hljs-regexp {
+    color: #86b300;
+  }
+
+  .hljs-regexp {
+    color: #4cbf99;
+  }
+
+  .hljs-title,
+  .hljs-section,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class {
+    color: #f2ae49;
+  }
+
+  .hljs-tag,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-subst {
+    color: #55b4d4;
+  }
+
+  .hljs-built_in,
+  .hljs-attr,
+  .hljs-variable,
+  .hljs-template-variable {
+    color: #399ee6;
+  }
+
+  .hljs-operator,
+  .hljs-punctuation,
+  .hljs-meta {
+    color: #ed9366;
+  }
+
+  .hljs-deletion {
+    color: #f07171;
+  }
+
+  .hljs-function,
+  .hljs-class,
+  .hljs-name {
+    color: #f2ae49;
+  }
+
+  /* Generic */
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+}
+
+/* DARK MODE */
+@media (prefers-color-scheme: dark) {
+  pre code.hljs {
+    background: #0a0e14;
+    color: #b3b1ad;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #626a73;
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-type,
+  .hljs-addition {
+    color: #ff8f40;
+  }
+
+  .hljs-number,
+  .hljs-constant {
+    color: #ffee99;
+  }
+
+  .hljs-string,
+  .hljs-doctag,
+  .hljs-regexp {
+    color: #c2d94c;
+  }
+
+  .hljs-regexp {
+    color: #95e6cb;
+  }
+
+  .hljs-title,
+  .hljs-section,
+  .hljs-name,
+  .hljs-selector-id,
+  .hljs-selector-class {
+    color: #ffb454;
+  }
+
+  .hljs-tag,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-subst {
+    color: #39bae6;
+  }
+
+  .hljs-built_in,
+  .hljs-attr,
+  .hljs-variable,
+  .hljs-template-variable {
+    color: #59c2ff;
+  }
+
+  .hljs-operator,
+  .hljs-punctuation,
+  .hljs-meta {
+    color: #f29668;
+  }
+
+  .hljs-deletion {
+    color: #f07178;
+  }
+
+  .hljs-function,
+  .hljs-class,
+  .hljs-name {
+    color: #ffb454;
+  }
+
+  /* Generic */
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+}
+
+/* Optional: Add subtle padding & rounded corners */
+pre {
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  font-size: 0.95em;
+}

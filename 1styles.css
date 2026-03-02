@@ -1,0 +1,174 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300&display=swap');
+
+:root {
+    --font-serif: "Libertinus Serif", alegreya, palatino, serif;
+    --font-sans: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", "k.iosevka", "fira mono", monospace;
+    --font-extra: "Rasa";
+    
+    /* Light mode colors (default) */
+    --bg-color: #fcfcfc;
+    --text-color: #5c6166;
+    --heading-color: #222;
+    --link-colour: #4cbf99;
+    --link-hover-color: #F07171;
+    --selection-color: rgba(255, 119, 51, 0.6);
+    --hr-color: #84878b;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0f0f17;
+        --text-color: #cbccc6;
+        --heading-color: #DDD;
+        --link-colour: #95E6CB;
+        --link-hover-color: #F07178;
+        --selection-color: rgba(255, 119, 51, 0.6);
+        --hr-color: #565a6e;
+    }
+}
+
+body {
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2, h3 {
+    font-family: var(--font-serif);
+    color: var(--heading-color);
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* Links styling */
+a.link {
+    color: var(--link-colour);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+a.link:hover {
+    color: var(--link-hover-color);
+    border-bottom: 1px solid currentColor;
+}
+
+/* Horizontal rule styling */
+hr {
+    border: none;
+    border-top: 1px solid var(--hr-color);
+    margin: 2rem 0;
+}
+
+/* Center alignment for links section */
+.center {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.center a {
+    display: block;
+    margin: 0.5rem 0;
+    color: var(--link-colour);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.center a:hover {
+    color: var(--link-hover-color);
+    border-bottom: 1px solid currentColor;
+}
+
+/* Right-aligned text for education info */
+.right {
+    float: right;
+    margin-left: 1rem;
+    font-size: 0.9rem;
+}
+
+/* SVG drawing styling */
+.typst {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.typst svg {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--hr-color);
+    border-radius: 4px;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Footer styling */
+footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Selection highlight */
+::selection {
+    background: var(--selection-color);
+    color: #fff;
+}
+
+/* Ensure proper spacing and layout */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    .right {
+        float: none;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+    
+    .center {
+        text-align: center;
+    }
+}
