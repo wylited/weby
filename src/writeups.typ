@@ -16,6 +16,9 @@ My postmortem writeups for CTF challenges and (soon) other academic investigatio
 
 == Cryptography
 
-- #link("/fractional-rsa.html")[Fractional RSA], a Week 8 COMP2633 Homework.
+- #link("/fractional-rsa")[Fractional RSA], a Week 8 COMP2633 (2025) Homework.
+- #link("/fire-drop")[Fire Drop], a misc challenge for Firebird CTF 2025.
 
 More coming soon, Stay tuned!
+
+#line(length: 100%)
