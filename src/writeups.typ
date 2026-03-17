@@ -20,6 +20,7 @@ My postmortem writeups for CTF challenges and (soon) other academic investigatio
 - #link("/fire-drop")[Fire Drop], a misc challenge for Firebird CTF 2025.
 - #link("/Cioccollato")[Cioccollato], a pentest challenge for PolyuCTF 2026.
 - #link("/SecureCommunicationAdvanced")[Secure Communication (advanced)], a pwn challenge for PolyuCTF 2026.
+- #link("/OneClick")[One Click Decryption], a forensics challenge for PolyuCTF 2026.
 
 More coming soon, Stay tuned!
 

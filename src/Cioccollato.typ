@@ -41,9 +41,6 @@ The challenge serves a chocolate café website on a single port `chal.polyuctf.c
 
 We can verify this by probing the port with `curl` (HTTP) and `ssh`.
 
-// Screenshot: show the terminal output of curl and ssh commands side-by-side or sequential.
-// The curl command should show the "Cioccolato Bear" title or server header.
-// The ssh command should show the OpenSSH version string.
 ```bash
 $ curl http://chal.polyuctf.com:12287/
 # → "Cioccolato Bear" — Italian chocolate café (Express 5.2.1 behind nginx)
@@ -62,9 +59,6 @@ Browsing the site reveals standard pages (`/about`, `/menu`, `/team`, `/location
 = Staff Enumeration
 
 Enumerating the staff API revealed the following users:
-
-// Screenshot: show the JSON response for ID 1 (Giovanni) from the browser or curl.
-// This is important to show the "notes" field which contains the hint about the bot.
 The first user is *Giovanni*, the Head Chocolatier. His workspace is `giovanni-notes-2024`. His notes contain a critical hint: "Gave barista remote access... Auto-login script runs every few minutes to check the recipe notepad." This suggests a client-side exploitation vector involving a bot.
 
 The second user is *guest*, a Visitor with access to `public-recipes`.
@@ -75,8 +69,6 @@ The third user is *barista*, a Junior Barista with no workspace.
 
 Visiting `/workspace/giovanni-notes-2024` reveals a recipe notepad page with an `<input id="notepad">`. The page loads `/assets/cb-ui.min.js`:
 
-// Screenshot: show the deobfuscated JS code from the browser devtools or source viewer.
-// Highlight the part where it reads the '--x' property and creates a new Image().
 ```javascript
 // Deobfuscated cb-ui.min.js
 document.addEventListener("DOMContentLoaded", function() {
@@ -116,8 +108,8 @@ The server-side CSS sanitizer strips HTML tags, `javascript:`, and event handler
 
 The bot types character by character. Webhook requests show the password building up:
 
-// Screenshot: show the webhook.site interface with the requests coming in.
-// Ideally show the list of requests on the left side, where you can see the query parameters changing.
+#image("webhook-cioccollato.png")
+
 ```
 ?r=B
 ?r=B4
@@ -141,8 +133,6 @@ We are logged in as `barista` (uid 1001).
 
 == Filesystem Exploration
 
-// Screenshot: show the 'ls -la' output of /srv/ftp/.secret/ showing the flag file permissions.
-// Also show the /etc/vsftpd.conf file content if possible, or just mention it.
 ```
 /srv/ftp/.secret/flag.txt   → -r-------- root:root  70 bytes  ← THE FLAG
 /srv/ftp/recipes/.backups/.credentials.bak  → "Nice try ;) - Try harder!"  (red herring)
@@ -156,7 +146,6 @@ The flag is root-only readable. No SUID binaries, no sudo, no capabilities, no c
 
 Searching for writable files owned by root reveals a misconfiguration:
 
-// Screenshot: show the find command running in the terminal and its output highlighting /etc/pam.d/vsftpd.
 ```bash
 $ find / -user root -writable 2>/dev/null | grep -v "/proc\|/sys\|/dev"
 /etc/pam.d/vsftpd
@@ -180,7 +169,6 @@ Now *any user* can FTP in with *any password*, including root.
 
 Since only Node.js is available on the container, we use it to perform a proper FTP PASV retrieval.
 
-// Screenshot: show the node script running in the terminal and printing the flag at the end.
 ```javascript
 const net = require("net");
 const client = net.connect(2121, "127.0.0.1", () => {
